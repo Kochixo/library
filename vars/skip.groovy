@@ -10,6 +10,8 @@ def call() {
                 steps {
                     script {
                         env.GIT_AUTHOR_EMAIL = sh(script: 'git log --format="%ae" | head -1', returnStdout: true).trim()
+                        echo env.GIT_AUTHOR_EMAIL
+                        echo skiped_email
                     }
                 }
             }
