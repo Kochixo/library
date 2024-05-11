@@ -1,4 +1,5 @@
-def skiped_email = "jenkins" 
+def teste() {
+    def skiped_email = "jenkins" 
 
 pipeline {
     agent any
@@ -21,4 +22,5 @@ pipeline {
             }
         }
     }
+}
 }
