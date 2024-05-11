@@ -19,6 +19,9 @@ def call() {
                         env.GIT_AUTHOR_EMAIL != skiped_email
                     }
                 }
+                steps {
+                    echo "Not a Commit from Jenkins"
+                }
             }
         }
     }
