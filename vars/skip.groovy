@@ -15,8 +15,10 @@ def call() {
             }
             stage('Teste') {
                 when {
-                    expression {
-                        env.GIT_AUTHOR_EMAIL != skiped_email
+                    not{
+                        expression {
+                            env.GIT_AUTHOR_EMAIL != skiped_email
+                        }
                     }
                 }
                 steps {
