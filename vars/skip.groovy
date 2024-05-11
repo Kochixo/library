@@ -1,5 +1,5 @@
 def call() {
-    def skiped_email = "jenkins" 
+    def skiped_email = "kochixo10@gmail.com" 
     pipeline {
         agent any
         environment {
