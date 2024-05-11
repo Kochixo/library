@@ -20,7 +20,10 @@ def call() {
                     }
                 }
                 steps {
-                    echo "Not a Commit from Jenkins"
+                    script{
+                        currentBuild.result = "ABORTED"
+                        error("Jenkins is the commiter")
+                    }
                 }
             }
         }
