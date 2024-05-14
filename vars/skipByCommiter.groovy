@@ -10,6 +10,6 @@ def call() {
         returnStdout: true
     )
     def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
-    echo envVars['myVar']
+    echo envVars['GIT_AUTHOR_EMAIL']
     return lastCommitterEmail.trim() != umail.getAddress().trim();
 } 
