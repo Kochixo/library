@@ -1,3 +1,5 @@
+import hudson.model.User
+
 def call() {
     def lastCommitterEmail = sh (
         script: "git log --format=\"%ae\" | head -1",
