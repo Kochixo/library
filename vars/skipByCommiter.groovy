@@ -10,8 +10,7 @@ def call(String email) {
     echo pwd.in.text
     echo pwd.err.text
 
-    echo allCommitterDetails.in.text
-    echo allCommitterDetails.err.text
+    echo allCommitterDetails
 
     String teste = allCommitterDetails
     return teste == email;
