@@ -3,7 +3,7 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
-    def email = hudson.model.User.current().getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
-
-    return lastCommitterEmail ==  email;
+    def user = hudson.model.User.current();
+    email = user.getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
+    return lastCommitterEmail == email;
 } 
