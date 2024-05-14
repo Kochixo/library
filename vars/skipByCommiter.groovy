@@ -1,3 +1,5 @@
+import hudson.model.AbstractProject
+import hudson.tasks.Mailer
 import hudson.model.User
 
 def call() {
@@ -5,8 +7,12 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
-    def user = hudson.model.User.current();
-    email = user.getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
-    echo email
-    return lastCommitterEmail == email;
+    def item = hudson.model.Hudson.instance.getItem(env.JOB_NAME) 
+    def build = item.getLastBuild()
+    def cause = build.getCause(hudson.model.Cause.UserIdCause.class)
+    def id = cause.getUserId()
+    User u = User.get(id)
+    def umail = u.getProperty(Mailer.UserProperty.class)
+    echo umail.getAddress()
+    return lastCommitterEmail == umail.getAddress();
 } 
