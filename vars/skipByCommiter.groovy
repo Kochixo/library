@@ -9,7 +9,9 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
-    def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
-    echo envVars['GIT_AUTHOR_EMAIL']
+    def env = System.getenv()
+    env.each{
+    println it
+    } 
     return lastCommitterEmail.trim() != umail.getAddress().trim();
 } 
