@@ -8,7 +8,7 @@ def call() {
         returnStdout: true
     )
     def build = currentBuild.rawBuild
-    def cause = build.getCause(hudson.model.Cause.UserIdCause.class)
+    def cause = build.getCause(hudson.model.Cause$UserIdCause)
     def id = cause.getUserId()
     User u = User.get(id)
     def umail = u.getProperty(Mailer.UserProperty.class)
