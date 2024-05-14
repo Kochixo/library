@@ -7,10 +7,14 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
-    def build = currentBuild.rawBuild
-    def cause = build.getCause(hudson.model.Cause$UserIdCause)
-    def id = cause.getUserId()
+    buildCause = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')
+    id = buildCause[0].userId
+    echo "id: ${id}"
     User u = User.get(id)
-    def umail = u.getProperty(Mailer.UserProperty.class)
-    return lastCommitterEmail.trim() != umail.getAddress().trim();
+    echo "u: ${u}"
+    umail = u.getProperty(Mailer.UserProperty.class)
+    echo "umail: ${umail}"
+    email = umail.getAddress()
+    echo "email: ${email}"
+    return lastCommitterEmail.trim() != email.trim();
 } 
