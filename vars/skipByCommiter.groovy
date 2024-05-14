@@ -12,7 +12,5 @@ def call() {
     def id = cause.getUserId()
     User u = User.get(id)
     def umail = u.getProperty(Mailer.UserProperty.class)
-    echo umail.getAddress().trim()
-    echo lastCommitterEmail.trim()
-    return lastCommitterEmail.trim() == umail.getAddress().trim();
+    return lastCommitterEmail.trim() != umail.getAddress().trim();
 } 
