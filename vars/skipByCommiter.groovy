@@ -7,5 +7,6 @@ def call() {
     )
     def user = hudson.model.User.current();
     email = user.getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
+    echo email
     return lastCommitterEmail == email;
 } 
