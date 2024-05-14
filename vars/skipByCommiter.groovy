@@ -1,12 +1,9 @@
-def call(String email) {
-    echo "PASSED INTO LIB"
-    def allCommitterDetails = sh (
+def call() {
+    def lastCommitterEmail = sh (
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
+    def email = hudson.model.User.current().getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
 
-    echo allCommitterDetails
-
-    String teste = allCommitterDetails
-    return teste == email;
+    return lastCommitterEmail ==  email;
 } 
