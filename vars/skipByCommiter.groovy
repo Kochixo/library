@@ -6,5 +6,6 @@ def call(String email) {
     echo allCommitterDetails.Trim()
 
     String teste = allCommitterDetails
+    String teste = allCommitterDetails
     return teste == email;
 }
