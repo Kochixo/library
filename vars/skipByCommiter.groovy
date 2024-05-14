@@ -1,6 +1,9 @@
 def call(String email) {
     echo "PASSED INTO LIB"
-    def allCommitterDetails = "git log --format=\"%ae\" | head -1".execute()
+    def allCommitterDetails = sh (
+        script: "git log --format=\"%ae\" | head -1",
+        Stdout: true
+    )
 
     def pwd = "pwd".execute()
 
@@ -12,4 +15,4 @@ def call(String email) {
 
     String teste = allCommitterDetails
     return teste == email;
-}
+} 
