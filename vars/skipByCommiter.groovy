@@ -7,8 +7,7 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
-    def item = hudson.model.Hudson.instance.getItem("test-jk") 
-    def build = item.getLastBuild()
+    def build = currentBuild.rawBuild
     def cause = build.getCause(hudson.model.Cause.UserIdCause.class)
     def id = cause.getUserId()
     User u = User.get(id)
