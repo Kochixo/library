@@ -13,5 +13,6 @@ def call() {
     User u = User.get(id)
     def umail = u.getProperty(Mailer.UserProperty.class)
     echo umail.getAddress()
+    echo lastCommitterEmail
     return lastCommitterEmail == umail.getAddress();
 } 
