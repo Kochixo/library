@@ -3,6 +3,7 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     )
-    echo hudson.model.Run.getCause()
+    def cause = currentBuild.getBuildCauses()
+    echo cause
     return lastCommitterEmail.trim() != this.env.GIT_AUTHOR_EMAIL;
 } 
