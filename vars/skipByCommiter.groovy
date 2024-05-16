@@ -1,7 +1,7 @@
 def call() {
     def causes = currentBuild.getBuildCauses()
 
-    if causes.containsKey("userId"){
+    if (causes.containsKey("userId")){
         return true
     } else {
         def lastCommitterEmail = sh (
