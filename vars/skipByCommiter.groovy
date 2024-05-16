@@ -9,7 +9,8 @@ def call() {
             script: "git log --format=\"%ae\" | head -1",
             returnStdout: true
         )
-
+        println lastCommitterEmail.trim()
+        println this.env.GIT_AUTHOR_EMAIL
         return lastCommitterEmail.trim() != this.env.GIT_AUTHOR_EMAIL;
     }
 } 
