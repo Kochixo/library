@@ -2,6 +2,7 @@ def call() {
     def causes = currentBuild.getBuildCauses()
 
     if (causes[0].containsKey('userId')){
+        println causes[0].containsKey('userId')
         return true
     } else {
         def lastCommitterEmail = sh (
