@@ -1,9 +1,14 @@
 def call() {
-    def lastCommitterEmail = sh (
-        script: "git log --format=\"%ae\" | head -1",
-        returnStdout: true
-    )
-    def cause = currentBuild.getBuildCauses()
-    println cause
-    return lastCommitterEmail.trim() != this.env.GIT_AUTHOR_EMAIL;
+    def causes = currentBuild.getBuildCauses()
+
+    if causes.containsKey("userId"){
+        return true
+    } else {
+        def lastCommitterEmail = sh (
+            script: "git log --format=\"%ae\" | head -1",
+            returnStdout: true
+        )
+
+        return lastCommitterEmail.trim() != this.env.GIT_AUTHOR_EMAIL;
+    }
 } 
