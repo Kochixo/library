@@ -4,6 +4,6 @@ def call() {
         returnStdout: true
     )
     def cause = currentBuild.getBuildCauses()
-    echo cause
+    println cause
     return lastCommitterEmail.trim() != this.env.GIT_AUTHOR_EMAIL;
 } 
