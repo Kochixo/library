@@ -1,16 +1,17 @@
 def call() {
     def causes = currentBuild.getBuildCauses()
 
-    if (causes[0].containsKey('userId')){
-        println causes[0].containsKey('userId')
-        return true
+    def isUser = causes[0].containsKey('userId') ? true : false
+    
+    def isNotJenkinsCommiter = sh (
+        script: "git log --format=\"%ae\" | head -1",
+        returnStdout: true
+    ) != this.env.GIT_AUTHOR_EMAIL ? true : false
+
+    if (isUser || isNotJenkinsCommiter) {
+        return true 
     } else {
-        def lastCommitterEmail = sh (
-            script: "git log --format=\"%ae\" | head -1",
-            returnStdout: true
-        )
-        println lastCommitterEmail.trim()
-        println this.env.GIT_AUTHOR_EMAIL
-        return lastCommitterEmail.trim() != this.env.GIT_AUTHOR_EMAIL;
+        //destroy
+        return false
     }
 } 
