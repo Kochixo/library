@@ -11,7 +11,7 @@ def call() {
     if (isUser || isNotJenkinsCommiter) {
         return true 
     } else {
-        //destroy
+        Run.fromExternalizableId(currentBuild.externalizableId).delete()
         return false
     }
 } 
