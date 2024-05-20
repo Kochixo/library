@@ -7,10 +7,7 @@ def call() {
         script: "git log --format=\"%ae\" | head -1",
         returnStdout: true
     ).trim() != this.env.GIT_AUTHOR_EMAIL ? true : false
-
-    println(isUser)
-    println(isNotJenkinsCommiter)
-
+    
     if (isUser || isNotJenkinsCommiter) {
         return true 
     } else {
